@@ -2,6 +2,7 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ms_undraw/ms_undraw.dart';
 import 'package:screenshot/screenshot.dart';
@@ -203,10 +204,10 @@ class _StoryViewCreatorState extends State<StoryViewCreator> {
                                         ],
                                       ),
                                       Center(
-                                        child: SizedBox(
-                                          height: 100,
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(bottom: 8),
+                                        child: Padding(
+                                          padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.height * .07),
+                                          child: SizedBox(
+                                            height: 120,
                                             child: ListView.builder(
                                               shrinkWrap: true,
                                               itemBuilder: (context, index) {
