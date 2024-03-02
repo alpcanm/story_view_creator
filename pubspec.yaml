@@ -10,7 +10,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  flutter_svg: ^2.0.7  
+  screenshot: ^2.1.0
+  ms_undraw:
+    git:
+      url: 'https://github.com/alpcanm/ms_undraw'
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -21,7 +25,8 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-
+   assets:
+    - assets/bg/
   # To add assets to your package, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
