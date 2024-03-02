@@ -12,7 +12,7 @@ class ColorButton extends StatefulWidget {
 }
 
 class _ColorButtonState extends State<ColorButton> {
-  ValueNotifier<Color> selectedColor = ValueNotifier(Colors.red);
+  ValueNotifier<Color> selectedColor = ValueNotifier(Colors.purple);
   ValueNotifier<bool> isOpened = ValueNotifier(false);
 
   @override
@@ -74,7 +74,7 @@ class _ColorButtonWidget extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: DecoratedBox(
           decoration: BoxDecoration(
-            border: Border.all(color: Colors.red),
+            border: Border.all(color: Colors.white),
             shape: BoxShape.circle,
           ),
           child: Padding(
