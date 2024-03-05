@@ -4,15 +4,14 @@ import 'package:flutter/material.dart';
 class ColorButton extends StatefulWidget {
   const ColorButton({
     Key? key,
-    required this.onPressed,
+    required this.selectedColor,
   }) : super(key: key);
-  final Function(Color) onPressed;
+  final ValueNotifier<Color> selectedColor;
   @override
   State<ColorButton> createState() => _ColorButtonState();
 }
 
 class _ColorButtonState extends State<ColorButton> {
-  ValueNotifier<Color> selectedColor = ValueNotifier(Colors.purple);
   ValueNotifier<bool> isOpened = ValueNotifier(false);
 
   @override
@@ -30,7 +29,7 @@ class _ColorButtonState extends State<ColorButton> {
                 itemBuilder: (context, index) {
                   if (index == 0) {
                     return _ColorButtonWidget(
-                      color: selectedColor.value,
+                      color: widget.selectedColor.value,
                       onPressed: () {
                         isOpened.value = true;
                       },
@@ -41,9 +40,9 @@ class _ColorButtonState extends State<ColorButton> {
                     child: _ColorButtonWidget(
                       color: colors[index],
                       onPressed: () {
-                        selectedColor.value = colors[index];
+                        widget.selectedColor.value = colors[index];
                         isOpened.value = false;
-                        widget.onPressed.call(selectedColor.value);
+                        widget.selectedColor.value;
                       },
                     ),
                   );

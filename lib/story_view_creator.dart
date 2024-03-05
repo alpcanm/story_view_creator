@@ -1,3 +1,3 @@
 library story_view_creator;
 
-export 'src/widget.dart';
+export 'src/story_view_creator_widget.dart';

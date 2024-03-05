@@ -2,7 +2,6 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ms_undraw/ms_undraw.dart';
 import 'package:screenshot/screenshot.dart';
@@ -20,7 +19,7 @@ class StoryViewCreator extends StatefulWidget {
 }
 
 class _StoryViewCreatorState extends State<StoryViewCreator> {
-  ValueNotifier<UnDrawIllustration> undrawIllustrationNotifier = ValueNotifier(UnDrawIllustration.a_better_world);
+  ValueNotifier<UnDrawIllustration?> undrawIllustrationNotifier = ValueNotifier(null);
   final TextEditingController titleEditingController = TextEditingController(text: "Başlık Ekle");
   final TextEditingController subTitleEditingController = TextEditingController(text: "Metin ekle");
   ValueNotifier<bool> showUnDrawIllustration = ValueNotifier(true);
@@ -82,7 +81,7 @@ class _StoryViewCreatorState extends State<StoryViewCreator> {
                             );
                           }),
                         ),
-                        ValueListenableBuilder<UnDrawIllustration>(
+                        ValueListenableBuilder<UnDrawIllustration?>(
                           valueListenable: undrawIllustrationNotifier,
                           builder: (context, illustrationValue, _) {
                             return Column(
@@ -91,12 +90,15 @@ class _StoryViewCreatorState extends State<StoryViewCreator> {
                                 ValueListenableBuilder<Color>(
                                     valueListenable: colorUnDrawIllustration,
                                     builder: (context, colorValue, _) {
-                                      return UnDraw(
-                                        color: colorValue, height: 150,
-                                        illustration: illustrationValue,
-                                        placeholder: const SizedBox.shrink(), //optional, default is the CircularProgressIndicator().
-                                        errorWidget: const Icon(Icons.error_outline, color: Colors.red, size: 50), //optional, default is the Text('Could not load illustration!').
-                                      );
+                                      return illustrationValue == null
+                                          ? const SizedBox()
+                                          : UnDraw(
+                                              color: colorValue, height: 150,
+                                              illustration: illustrationValue,
+                                              placeholder: const SizedBox.shrink(), //optional, default is the CircularProgressIndicator().
+                                              errorWidget:
+                                                  const Icon(Icons.error_outline, color: Colors.red, size: 50), //optional, default is the Text('Could not load illustration!').
+                                            );
                                     }),
                                 Expanded(
                                     flex: 2,
@@ -193,13 +195,13 @@ class _StoryViewCreatorState extends State<StoryViewCreator> {
                                         mainAxisAlignment: MainAxisAlignment.start,
                                         children: [
                                           ColorButton(
-                                            onPressed: (p0) => colorBackground.value = p0,
+                                            selectedColor: colorBackground,
                                           ),
                                           ColorButton(
-                                            onPressed: (p0) => colorBackgroundSvg.value = p0,
+                                            selectedColor: colorBackgroundSvg,
                                           ),
                                           ColorButton(
-                                            onPressed: (p0) => colorUnDrawIllustration.value = p0,
+                                            selectedColor: colorUnDrawIllustration,
                                           ),
                                         ],
                                       ),
@@ -212,6 +214,27 @@ class _StoryViewCreatorState extends State<StoryViewCreator> {
                                               shrinkWrap: true,
                                               itemBuilder: (context, index) {
                                                 final illustration = UnDrawIllustration.values[index];
+                                                if (index == 0) {
+                                                  return GestureDetector(
+                                                    onTap: () {
+                                                      undrawIllustrationNotifier.value = null;
+                                                    },
+                                                    child: const Padding(
+                                                      padding: EdgeInsets.symmetric(horizontal: 8.0),
+                                                      child: SizedBox(
+                                                        width: 100,
+                                                        child: DecoratedBox(
+                                                          decoration: BoxDecoration(
+                                                            color: Colors.white38,
+                                                            shape: BoxShape.circle,
+                                                          ),
+                                                          child: Icon(Icons.clear),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  );
+                                                }
+
                                                 return GestureDetector(
                                                   onTap: () {
                                                     undrawIllustrationNotifier.value = illustration;
@@ -226,7 +249,7 @@ class _StoryViewCreatorState extends State<StoryViewCreator> {
                                                           shape: BoxShape.circle,
                                                         ),
                                                         child: UnDraw(
-                                                          color: Colors.purple, height: 50,
+                                                          color: colorUnDrawIllustration.value, height: 50,
                                                           illustration: illustration, fit: BoxFit.fitWidth,
                                                           placeholder: const Center(
                                                             child: CircularProgressIndicator(),
