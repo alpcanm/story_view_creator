@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, deprecated_member_use
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -10,9 +10,9 @@ import 'color_button.dart';
 
 class StoryViewCreator extends StatefulWidget {
   const StoryViewCreator({
-    Key? key,
+    super.key,
     required this.onFinished,
-  }) : super(key: key);
+  });
   final Function(Uint8List?) onFinished;
   @override
   State<StoryViewCreator> createState() => _StoryViewCreatorState();

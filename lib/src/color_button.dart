@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 class ColorButton extends StatefulWidget {
   const ColorButton({
-    Key? key,
+    super.key,
     required this.selectedColor,
-  }) : super(key: key);
+  });
   final ValueNotifier<Color> selectedColor;
   @override
   State<ColorButton> createState() => _ColorButtonState();
@@ -57,10 +57,9 @@ class _ColorButtonState extends State<ColorButton> {
 
 class _ColorButtonWidget extends StatelessWidget {
   const _ColorButtonWidget({
-    Key? key,
     required this.onPressed,
     required this.color,
-  }) : super(key: key);
+  });
   final VoidCallback onPressed;
   final Color color;
   @override
