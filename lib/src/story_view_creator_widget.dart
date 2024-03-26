@@ -96,8 +96,8 @@ class _StoryViewCreatorState extends State<StoryViewCreator> {
                                               color: colorValue, height: 150,
                                               illustration: illustrationValue,
                                               placeholder: const SizedBox.shrink(), //optional, default is the CircularProgressIndicator().
-                                              errorWidget:
-                                                  const Icon(Icons.error_outline, color: Colors.red, size: 50), //optional, default is the Text('Could not load illustration!').
+                                              errorWidget: const Icon(Icons.error_outline,
+                                                  color: Colors.red, size: 50), //optional, default is the Text('Could not load illustration!').
                                             );
                                     }),
                                 Expanded(
@@ -112,8 +112,16 @@ class _StoryViewCreatorState extends State<StoryViewCreator> {
                                             controller: titleEditingController,
                                             decoration: const InputDecoration(
                                               border: InputBorder.none,
+                                              errorBorder: InputBorder.none,
+                                              enabledBorder: InputBorder.none,
+                                              disabledBorder: InputBorder.none,
+                                              focusedBorder: InputBorder.none,
+                                              focusedErrorBorder: InputBorder.none,
+                                              fillColor: Colors.transparent,
                                             ),
-                                            style: Theme.of(context).textTheme.headlineLarge!.copyWith(fontWeight: FontWeight.bold),
+                                            style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                           ),
                                           TextField(
                                             focusNode: myFocusNode2,
@@ -122,6 +130,12 @@ class _StoryViewCreatorState extends State<StoryViewCreator> {
                                             maxLines: 2,
                                             decoration: const InputDecoration(
                                               border: InputBorder.none,
+                                              errorBorder: InputBorder.none,
+                                              enabledBorder: InputBorder.none,
+                                              disabledBorder: InputBorder.none,
+                                              focusedBorder: InputBorder.none,
+                                              focusedErrorBorder: InputBorder.none,
+                                              fillColor: Colors.transparent,
                                             ),
                                           ),
                                         ],
