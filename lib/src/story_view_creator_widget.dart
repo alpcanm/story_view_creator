@@ -33,6 +33,7 @@ class _StoryViewCreatorState extends State<StoryViewCreator> {
   @override
   void initState() {
     super.initState();
+
     myFocusNode.addListener(() {
       if (myFocusNode.hasFocus) {
         showUnDrawIllustration.value = false;
@@ -52,8 +53,9 @@ class _StoryViewCreatorState extends State<StoryViewCreator> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onDoubleTap: () {
-        FocusScope.of(context).unfocus();
+      onTap: () {
+        myFocusNode.unfocus();
+        myFocusNode2.unfocus();
       },
       child: ValueListenableBuilder<Color>(
           valueListenable: colorBackground,
@@ -181,7 +183,8 @@ class _StoryViewCreatorState extends State<StoryViewCreator> {
                                         heroTag: null,
                                         onPressed: () async {
                                           isVisibleForSS.value = false;
-
+                                          myFocusNode.unfocus();
+                                          myFocusNode2.unfocus();
                                           final result = await screenshotController.capture(); // Ekran görüntüsünü al ve kaydet
                                           widget.onFinished.call(result);
                                           isVisibleForSS.value = true;
