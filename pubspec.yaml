@@ -12,9 +12,7 @@ dependencies:
     sdk: flutter
   flutter_svg: ^2.0.7  
   screenshot: ^3.0.0
-  ms_undraw:
-    git:
-      url: 'https://github.com/alpcanm/ms_undraw'
+  ms_undraw: ^4.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

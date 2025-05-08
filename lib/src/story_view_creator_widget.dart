@@ -231,6 +231,7 @@ class _StoryViewCreatorState extends State<StoryViewCreator> {
                                               shrinkWrap: true,
                                               itemBuilder: (context, index) {
                                                 final illustration = UnDrawIllustration.values[index];
+
                                                 if (index == 0) {
                                                   return GestureDetector(
                                                     onTap: () {
@@ -255,6 +256,7 @@ class _StoryViewCreatorState extends State<StoryViewCreator> {
                                                 return GestureDetector(
                                                   onTap: () {
                                                     undrawIllustrationNotifier.value = illustration;
+                                               
                                                   },
                                                   child: Padding(
                                                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
